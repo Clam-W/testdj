@@ -23,8 +23,8 @@ class Case(models.Model):
         return self.config.name
 
 class Step(models.Model):
-    belong_case = models.ForeignKey(Case,on_delete=models.CASCADE())
-    linked_case = models.ForeignKey(Case,on_delete=models.SET_NULL(),null=True)
+    belong_case = models.ForeignKey(Case,on_delete=models.CASCADE,related_name='teststeps')
+    linked_case = models.ForeignKey(Case,on_delete=models.SET_NULL,null=True,related_name='linked_steps')
     name = models.CharField("名称",max_length=128)
     variables = models.JSONField('变量',null=True)
     extract = models.JSONField("请求返回值", max_length=128)
